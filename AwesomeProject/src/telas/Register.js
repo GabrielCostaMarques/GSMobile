@@ -28,11 +28,31 @@ export function Register() {
   };
 
   const [teste, setTeste] = useState([]);
+  const [nome, setNome] = useState('aaa');
+  const [cpf, setCpf] = useState('222');
+  const [dtNsc, setDtNsc] = useState('333');
+  const [email, setEmail] = useState('444');
+  const [senha, setSenha] = useState('555');
+
+  // const listar = async () => {
+  //   try {
+  //     const response = await axios.get(`${baseUrl}/ong/listar`);
+  //     setTeste(JSON.stringify(response.data));
+  //   } catch (error) {
+  //     alert(error);
+  //   }
+  // };
 
   const inserir = async () => {
     try {
-      const response = await axios.get(`${baseUrl}/ong/listar`);
-      setTeste(JSON.stringify(response.data));
+      const response = await axios.post(`${baseUrl}/ong/cadastrar`, {
+        nome,
+        cpf,
+        dtNsc,
+        email,
+        senha,
+      });
+      alert(response.status);
     } catch (error) {
       alert(error);
     }
@@ -51,21 +71,39 @@ export function Register() {
         <View>
           <Text style={Style.txt2}>Nome Completo</Text>
           <TextInput
+            onChangeText={setNome}
+            value={nome}
             placeholder="Digite seu Nome Completo"
             style={Style.input}
           />
           <Text style={Style.txt2}>CPF</Text>
-          <TextInput placeholder="Digite seu CPF" style={Style.input} />
+          <TextInput
+            onChangeText={setCpf}
+            value={cpf}
+            placeholder="Digite seu CPF"
+            style={Style.input}
+          />
+
           <Text style={Style.txt2}>Data de Nascimento</Text>
           <TextInput
+            onChangeText={setDtNsc}
+            value={dtNsc}
             placeholder="Digite sua Data de Nascimento"
             style={Style.input}
           />
+
           <Text style={Style.txt2}>EMAIL</Text>
-          <TextInput placeholder="Digite seu E-mail" style={Style.input} />
+          <TextInput
+            onChangeText={setEmail}
+            value={email}
+            placeholder="Digite seu E-mail"
+            style={Style.input}
+          />
 
           <Text style={Style.txt2}>Crie uma Senha</Text>
           <TextInput
+            onChangeText={setSenha}
+            value={senha}
             secureTextEntry={true}
             placeholder="Digite sua senha"
             style={Style.input}
@@ -79,14 +117,6 @@ export function Register() {
             }}>
             <View>
               <Text style={Style.btn}>Cadastrar</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              alert(teste);
-            }}>
-            <View>
-              <Text style={Style.btn}>Teste Alert JSON</Text>
             </View>
           </TouchableOpacity>
         </View>
