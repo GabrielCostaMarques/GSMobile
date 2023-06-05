@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   View,
@@ -6,18 +6,40 @@ import {
   TouchableOpacity,
   Image,
   StatusBar,
+  ScrollView,
 } from 'react-native';
 
-import Style from '../../estilos/StyleSignIn';
-import Logo from '../../assets/images.png';
+import axios from 'axios';
+import Style from './estilos/StyleSignIn';
+import Logo from '../assets/images.png';
 
-class Register extends Component {
-  goLogin = () => {
+const baseUrl = 'http://localhost:8080/api/v1';
+
+export function Register() {
+  const api = axios.create({
+    baseURL: baseUrl,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const goLogin = () => {
     this.props.navigation.navigate('Login');
   };
 
-  render() {
-    return (
+  const [teste, setTeste] = useState([]);
+
+  const inserir = async () => {
+    try {
+      const response = await axios.get(`${baseUrl}/ong/listar`);
+      setTeste(JSON.stringify(response.data));
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  return (
+    <ScrollView>
       <View style={Style.container}>
         <View style={{ marginBottom: 30 }}>
           <Text style={Style.txt1}>Cadastre-se</Text>
@@ -53,29 +75,34 @@ class Register extends Component {
         <View>
           <TouchableOpacity
             onPress={() => {
-              alert('cadastro feito');
-            }}
-          >
+              inserir();
+            }}>
             <View>
               <Text style={Style.btn}>Cadastrar</Text>
             </View>
           </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              alert(teste);
+            }}>
+            <View>
+              <Text style={Style.btn}>Teste Alert JSON</Text>
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
-    );
-  }
+    </ScrollView>
+  );
 }
 
-export default class RegisterScreen extends Component {
-  render() {
-    return (
-      <View style={{ flex: 1 }}>
-        <StatusBar animated />
-        <View>
-          <Image source={Logo} style={Style.logo} />
-        </View>
-        <Register navigation={this.props.navigation} />
+export default function RegisterScreen(props) {
+  return (
+    <View style={{ flex: 1 }}>
+      <StatusBar animated />
+      <View>
+        <Image source={Logo} style={Style.logo} />
       </View>
-    );
-  }
+      <Register navigation={props.navigation} />
+    </View>
+  );
 }
