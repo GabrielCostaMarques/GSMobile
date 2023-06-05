@@ -1,20 +1,19 @@
-import React from "react";
-import { StatusBar } from "expo-status-bar";
+import React, { Component } from "react";
 import {
-  StyleSheet,
   Text,
   View,
   TextInput,
   TouchableOpacity,
-  ImageBackground,
   Image,
+  StatusBar,
 } from "react-native";
 
-import Style from './estilos/StyleSignIn'
-import Logo from './assets/images.png'
+import Style from '../../estilos/StyleSignIn'
+import Logo from '../../assets/images.png'
 
-const Login =()=>{
-  return( 
+class Login extends Component{
+  render(){ 
+    return( 
     <View style={Style.container}>
       <View style={{marginBottom:30}}>
           <Text style={Style.txt1}>Login</Text>
@@ -31,8 +30,8 @@ const Login =()=>{
 
         <View>
           <TouchableOpacity
-            onPressIn={() => {
-              alert("Seus dados foram cadastrados!");
+            onPress={() => {
+              alert("cadastro feito")
             }}
           >
             <View>
@@ -42,16 +41,21 @@ const Login =()=>{
         </View>
     </View>
 
-  )
+  )}
+  
+ 
 }
 
-export default function App() {
-  return (
-    <View style={{flex:1}}>
+export default()=> {
+  return (    
+      <View style={{flex:1}}>
+        <StatusBar animated/>
       <View>
         <Image source={Logo} style={Style.logo}/>
       </View>
       <Login/>
     </View>
+
   );
 }
+

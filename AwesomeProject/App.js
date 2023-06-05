@@ -1,57 +1,21 @@
-import React from "react";
-import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-  ImageBackground,
-  Image,
-} from "react-native";
+import { View, Text } from 'react-native'
+import React from 'react'
 
-import Style from './estilos/StyleSignIn'
-import Logo from './assets/images.png'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
 
-const Login =()=>{
-  return( 
-    <View style={Style.container}>
-      <View style={{marginBottom:30}}>
-          <Text style={Style.txt1}>Login</Text>
-          <Text>Faça o login para continuar</Text>
-        </View>
+import Register from './src/telas/Register'
+import Login from './src/telas/SignIn'
 
-        <View>
-          <Text style={Style.txt2}>EMAIL</Text>
-          <TextInput placeholder="Digite seu E-mail" style={Style.input}/>
-
-          <Text style={Style.txt2}>PASSWORD</Text>
-          <TextInput secureTextEntry={true} placeholder="Digite sua senha" style={Style.input} />
-        </View>
-
-        <View>
-          <TouchableOpacity
-            onPressIn={() => {
-              alert("Seus dados foram cadastrados!");
-            }}
-          >
-            <View>
-              <Text style={Style.btn}>Cadastrar</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-    </View>
-
-  )
-}
+const Stack = createStackNavigator()
 
 export default function App() {
   return (
-    <View style={{flex:1}}>
-      <View>
-        <Image source={Logo} style={Style.logo}/>
-      </View>
-      <Login/>
-    </View>
-  );
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Cadastro" component={Register} />
+        <Stack.Screen name="Login" component={Login} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }
