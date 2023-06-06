@@ -11,6 +11,7 @@ import {
 import Style from '../../estilos/StyleSignIn';
 import Logo from '../../assets/images.png';
 
+
 class Register extends Component {
   goLogin = () => {
     this.props.navigation.navigate('Login');
