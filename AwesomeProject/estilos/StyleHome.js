@@ -22,11 +22,11 @@ export default StyleSheet.create({
     },
 
     titulo1:{
-        fontSize:30,
+        fontSize:35,
         fontWeight:"bold",
         textAlign:"center",
         marginTop:20,
-        backgroundColor:'#2d720d',
+        color:"#7ED956",
         borderRadius:30
     },
 

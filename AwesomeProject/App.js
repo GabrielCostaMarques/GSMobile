@@ -7,6 +7,7 @@ import Register from './src/telas/Register';
 import SignIn from './src/telas/SignIn';
 import Home from './src/telas/Home/Home';
 import Doar from './src/telas/Home/FormsDoar'
+import SobreNos from './src/telas/Home/SobreNos'
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ export default function App() {
         <Stack.Screen name="Login" component={SignIn} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Doar" component={Doar} />
+        <Stack.Screen name="SobreNos" component={SobreNos} />
       </Stack.Navigator>
     </NavigationContainer>
   );

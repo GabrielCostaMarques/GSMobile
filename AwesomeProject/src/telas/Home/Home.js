@@ -15,6 +15,10 @@ export default function Home({navigation}){
         navigation.navigate('Doar');
       };
 
+    const goSobre =()=>{
+        navigation.navigate('SobreNos')
+    }
+
     return (
         <View style={{flex:1}}>    
             <View style={Style.topo}>
@@ -38,7 +42,8 @@ export default function Home({navigation}){
                 <Text style={Style.txtIcon}>Doar</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={Style.touchSobre}>
+            <TouchableOpacity style={Style.touchSobre} onPress={()=>{
+                goSobre()}}>
                 <Image source={SobreNos} style={Style.iconSobre}></Image>
                 <Text style={Style.txtIcon}>Sobre Nós</Text>
             </TouchableOpacity>
