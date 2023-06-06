@@ -26,6 +26,8 @@ export default StyleSheet.create({
         fontWeight:"bold",
         textAlign:"center",
         marginTop:20,
+        backgroundColor:'#2d720d',
+        borderRadius:30
     },
 
     img:{
