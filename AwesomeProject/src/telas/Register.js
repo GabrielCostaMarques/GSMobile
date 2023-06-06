@@ -34,14 +34,14 @@ export function Register() {
   const [email, setEmail] = useState('444');
   const [senha, setSenha] = useState('555');
 
-  // const listar = async () => {
-  //   try {
-  //     const response = await axios.get(`${baseUrl}/ong/listar`);
-  //     setTeste(JSON.stringify(response.data));
-  //   } catch (error) {
-  //     alert(error);
-  //   }
-  // };
+  const listar = async () => {
+    try {
+      const response = await axios.get(`https://swapi.dev/api/people/1/`);
+      console.log(response.data);
+    } catch (error) {
+      alert(error);
+    }
+  };
 
   const inserir = async () => {
     try {
@@ -54,7 +54,7 @@ export function Register() {
       });
       alert(response.status);
     } catch (error) {
-      alert(error);
+      console.log(error)
     }
   };
 
@@ -114,6 +114,16 @@ export function Register() {
           <TouchableOpacity
             onPress={() => {
               inserir();
+            }}>
+            <View>
+              <Text style={Style.btn}>Cadastrar</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <TouchableOpacity
+            onPress={() => {
+              listar();
             }}>
             <View>
               <Text style={Style.btn}>Cadastrar</Text>
