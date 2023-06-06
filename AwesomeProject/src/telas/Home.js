@@ -1,9 +1,11 @@
-import { View, Text,Image } from 'react-native'
+import { View, Text,Image, ImageBackground, TouchableOpacity } from 'react-native'
 import React from 'react'
 
 import Style from '../../estilos/StyleHome'
 import Icon from '../../assets/Icon.png'
 import Doacoes from '../../assets/Icon-doacoes.png'
+import Doar from '../../assets/Icon-doar.png'
+import SobreNos from '../../assets/SobreNos.png'
 
 export default function Home(){
     
@@ -16,8 +18,12 @@ export default function Home(){
             </View>
 
             <View style={Style.menu}>
-                <Text>ATIVIDADES</Text>
-                <Image source={Doacoes}/>
+                <Text style={Style.titulo1}>ATIVIDADES</Text>
+            <TouchableOpacity style={Style.touchDoacoes}><Image source={Doacoes} style={Style.iconDoacoes}></Image><Text style={Style.txtIcon}>Doações</Text></TouchableOpacity>
+            <TouchableOpacity style={Style.touchDoar}><Image source={Doar} style={Style.iconDoar}></Image><Text style={Style.txtIcon}>Doar</Text></TouchableOpacity>
+            <TouchableOpacity style={Style.touchSobre}><Image source={SobreNos} style={Style.iconSobre}></Image><Text style={Style.txtIcon}>Sobre Nós</Text></TouchableOpacity>
+                
+                
             </View>
         </View>
 
