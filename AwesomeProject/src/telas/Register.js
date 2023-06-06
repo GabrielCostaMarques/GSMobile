@@ -10,8 +10,8 @@ import {
 } from 'react-native';
 
 import axios from 'axios';
-import Style from './estilos/StyleSignIn';
-import Logo from '../assets/images.png';
+import Style from '../../estilos/StyleSignIn';
+import Logo from '../../assets/images.png';
 
 const baseUrl = 'http://localhost:8080/api/v1';
 
