@@ -11,11 +11,11 @@ import {
 
 import axios from 'axios';
 import Style from '../../estilos/StyleSignIn';
-import Logo from '../../assets/images.png';
+import Logo from '../../assets/images.png'
 
 const baseUrl = 'http://localhost:8080/api/v1';
 
-export function Register() {
+export default function Register({ navigation }) {
   const api = axios.create({
     baseURL: baseUrl,
     headers: {
@@ -23,7 +23,7 @@ export function Register() {
     },
   });
 
-  const goLogin = (navigation) => {
+  const goLogin = () => {
     navigation.navigate('Login');
   };
 
@@ -33,15 +33,6 @@ export function Register() {
   const [dtNsc, setDtNsc] = useState('333');
   const [email, setEmail] = useState('444');
   const [senha, setSenha] = useState('555');
-
-  // const listar = async () => {
-  //   try {
-  //     const response = await axios.get(`${baseUrl}/ong/listar`);
-  //     setTeste(JSON.stringify(response.data));
-  //   } catch (error) {
-  //     alert(error);
-  //   }
-  // };
 
   const inserir = async () => {
     try {
@@ -61,9 +52,13 @@ export function Register() {
   return (
     <ScrollView>
       <View style={Style.container}>
+        <View>
+          <Image source={Logo} style={Style.logo} />
+        </View>
+
         <View style={{ marginBottom: 30 }}>
           <Text style={Style.txt1}>Cadastre-se</Text>
-          <TouchableOpacity onPress={()=>{goLogin(props.navigation)}}>
+          <TouchableOpacity onPress={goLogin}>
             <Text>Já Cadastrado? Entre!</Text>
           </TouchableOpacity>
         </View>
@@ -111,10 +106,11 @@ export function Register() {
         </View>
 
         <View>
-          <TouchableOpacity
-            onPress={() => {
-              inserir();
-            }}>
+          <TouchableOpacity onPress={()=>{
+            inserir()
+            alert("CADASTRO REALIZADO")
+            goLogin()
+          }}>
             <View>
               <Text style={Style.btn}>Cadastrar</Text>
             </View>
@@ -122,17 +118,5 @@ export function Register() {
         </View>
       </View>
     </ScrollView>
-  );
-}
-
-export default function RegisterScreen(props) {
-  return (
-    <View style={{ flex: 1 }}>
-      <StatusBar animated />
-      <View>
-        <Image source={Logo} style={Style.logo} />
-      </View>
-      <Register navigation={props.navigation} />
-    </View>
   );
 }

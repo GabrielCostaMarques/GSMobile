@@ -11,9 +11,14 @@ import {
 import Style from '../../estilos/StyleSignIn'
 import Logo from '../../assets/images.png'
 
-class Login extends Component{
-  render(){ 
-    return( 
+
+
+export default function SignIn({navigation}){
+  const goHome=()=>{
+  navigation.navigate('Home')
+}
+  
+  return( 
     <View style={Style.container}>
       <View style={{marginBottom:30}}>
           <Text style={Style.txt1}>Login</Text>
@@ -32,6 +37,7 @@ class Login extends Component{
           <TouchableOpacity
             onPress={() => {
               alert("cadastro feito")
+              goHome()
             }}
           >
             <View>
@@ -40,22 +46,4 @@ class Login extends Component{
           </TouchableOpacity>
         </View>
     </View>
-
   )}
-  
- 
-}
-
-export default()=> {
-  return (    
-      <View style={{flex:1}}>
-        <StatusBar animated/>
-      <View>
-        <Image source={Logo} style={Style.logo}/>
-      </View>
-      <Login/>
-    </View>
-
-  );
-}
-

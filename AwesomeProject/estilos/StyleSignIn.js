@@ -9,13 +9,13 @@ export default StyleSheet.create({
         alignItems:"center",
         justifyContent:"center",
         textAlign:"center",
-        backgroundColor:'#7ED956'
-        
+        backgroundColor:'#7ED956',
     },    
     
     logo:{
         width: "100%",
         height: 1255/2925*width, 
+        zIndex:99,
     },
 
     txt1:{
