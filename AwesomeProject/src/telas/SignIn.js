@@ -35,7 +35,7 @@ class Login extends Component{
             }}
           >
             <View>
-              <Text style={Style.btn}>Cadastrar</Text>
+              <Text style={Style.btn}>Logar</Text>
             </View>
           </TouchableOpacity>
         </View>
