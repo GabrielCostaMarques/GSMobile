@@ -17,11 +17,9 @@ export default function Doacoes() {
         alert("Sem dados Cadastrados")
       }
       setDados(response.data);
-      if (response.data ==200||response.data==201){
-        alert("Erro de formulário")
-        goHome()}
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      alert(`Dados não carregados${error.status}`)
     }
   };
 

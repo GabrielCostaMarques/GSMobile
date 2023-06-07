@@ -16,14 +16,8 @@ export default function DonationForm({ navigation }) {
   const inserir = async () => {
     try {
       const response = await axios.post(`${API_URL}/doador`,{nome,tipo,documento,email,telefone});
-        if (response.data ==200||response.data==201||response.data==400){
-          alert("Erro de formulário")
-          goHome()}
-          else{
-            alert("Doação Realizada!")
-          }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

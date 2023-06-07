@@ -21,12 +21,9 @@ export default function Register() {
     try {
       const response = await axios.get(`${API_URL}/ong/listarTodos`);
       setValor(response.data)
-      if (response.data ==200||response.data==201){
-        alert("Erro de formulário")
-        goHome()}
-      //console.log(response.data)
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      alert(`Dados não carregados${error.status}`)
     }
   };
 
