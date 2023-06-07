@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Register from './src/telas/Register';
 import SignIn from './src/telas/SignIn';
-import Home from './src/telas/Home/Home';
+import Home from './src/telas/Home/HomeScreen'
 import Doar from './src/telas/Home/FormsDoar'
 import SobreNos from './src/telas/Home/SobreNos'
 import Doacoes from './src/telas/Doacoes';
