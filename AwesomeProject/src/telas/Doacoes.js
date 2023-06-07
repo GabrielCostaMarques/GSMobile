@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, Button, SafeAreaView,TextInput,TouchableOpacity } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { View, Text, FlatList, Button, SafeAreaView, TouchableOpacity, TextInput } from 'react-native';
 import axios from 'react-native-axios';
-import styles from '../../estilos/StyleDoacoes'
+import styles from '../../estilos/StyleDoacoes';
+import { removerDoador, atualizarDoador } from './api';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import {API_URL} from './api'
+
 export default function Doacoes() {
-  const [dados, setDados] = useState([])
+  const [dados, setDados] = useState([]);
 
   useEffect(() => {
-    listar()
+    listar();
   }, []);
 
   const listar = async () => {
@@ -31,66 +33,30 @@ export default function Doacoes() {
   };
 
   const Item = ({ dados }) => {
-    const [valoresAtualizados, setValoresAtualizados] = useState({
-      nome: dados.nome,
-      documento: dados.documento,
-      email: dados.email,
-      telefone: dados.telefone,
-      tipo: dados.tipo,
-    });
-
-    const handleAtualizarDoador = async () => {
-      try {
-        const response = await axios.put(`/doador/${dados.id}`, valoresAtualizados);
-        console.log(response.data);
-        listar();
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     return (
       <View style={styles.table}>
         <View style={styles.row}>
           <Text style={styles.header}>Nome</Text>
-          <TextInput
-            value={valoresAtualizados.nome}
-            onChangeText={(text) => setValoresAtualizados({ ...valoresAtualizados, nome: text })}
-          />
+          <Text>{dados.nome}</Text>
         </View>
         <View style={styles.row}>
           <Text style={styles.header}>Documento</Text>
-          <TextInput
-            value={valoresAtualizados.documento}
-            onChangeText={(text) => setValoresAtualizados({ ...valoresAtualizados, documento: text })}
-          />
+          <Text>{dados.documento}</Text>
         </View>
         <View style={styles.row}>
           <Text style={styles.header}>Email</Text>
-          <TextInput
-            value={valoresAtualizados.email}
-            onChangeText={(text) => setValoresAtualizados({ ...valoresAtualizados, email: text })}
-          />
+          <Text>{dados.email}</Text>
         </View>
         <View style={styles.row}>
           <Text style={styles.header}>Telefone</Text>
-          <TextInput
-            value={valoresAtualizados.telefone}
-            onChangeText={(text) => setValoresAtualizados({ ...valoresAtualizados, telefone: text })}
-          />
+          <Text>{dados.telefone}</Text>
         </View>
         <View style={styles.row}>
           <Text style={styles.header}>Tipo</Text>
-          <TextInput
-            value={valoresAtualizados.tipo}
-            onChangeText={(text) => setValoresAtualizados({ ...valoresAtualizados, tipo: text })}
-          />
+          <Text>{dados.tipo}</Text>
         </View>
-        <TouchableOpacity onPress={handleAtualizarDoador}>
-          <MaterialCommunityIcons name="pencil" size={24} color="black" />
-        </TouchableOpacity>
         <TouchableOpacity onPress={() => handleRemoverDoador(dados.id)}>
-          <MaterialCommunityIcons name="trash-can" size={24} color="black" />
+          <MaterialCommunityIcons name="trash-can-outline" size={24} color="red" />
         </TouchableOpacity>
       </View>
     );
