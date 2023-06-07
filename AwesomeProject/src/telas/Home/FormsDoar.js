@@ -11,13 +11,17 @@ export default function DonationForm({ navigation }) {
   const [documento, setDocumento] = useState('');
   const [email, setEmail] = useState('');
   const [telefone, setTelefone] = useState('');
-  
+
+ 
    
   const inserir = async () => {
     try {
-      const response = await axios.post(`${API_URL}/doador`,{nome,tipo,documento,email,telefone});
+
+      await axios.post(`${API_URL}/doador`,{nome,tipo,documento,email,telefone});
+      alert("Cadastro Realizado")
+      
     } catch (error) {
-      // console.log(error);
+      console.log(error);
     }
   };
 
@@ -63,10 +67,7 @@ export default function DonationForm({ navigation }) {
         style={Style.input}
       />
 
-      <TouchableOpacity onPress={()=>{
-        (inserir)
-        goHome()
-      }}
+      <TouchableOpacity onPress={inserir}
        style={Style.btn}>
         <View>
           <Text style={Style.txtBtn}>Enviar</Text>
