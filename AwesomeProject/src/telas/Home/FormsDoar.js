@@ -1,21 +1,35 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 
 import Style from '../../../estilos/StyleDoar'
 
-export default function DonationForm({navigation}) {
+export default function DonationForm({ navigation }) {
   const [nomeDoador, setNomeDoador] = useState('');
   const [perecivel, setPerecivel] = useState('');
   const [quantidade, setQuantidade] = useState('');
   const [observacoes, setObservacoes] = useState('');
+  const [listaDados, setListaDados] = useState([]);
 
-
-  const goHome=()=>{
+  const goHome = () => {
     navigation.navigate('Home')
   }
 
+  const adicionarDados = () => {
+    const dados = {
+      nomeDoador,
+      perecivel,
+      quantidade,
+      observacoes
+    };
+    setListaDados([...listaDados, dados]);
+    setNomeDoador('');
+    setPerecivel('');
+    setQuantidade('');
+    setObservacoes('');
+  }
+
   return (
-    <View style={Style.container}>
+    <ScrollView contentContainerStyle={Style.container}>
       <Text style={Style.txt1}>Nome do Doador</Text>
       <TextInput
         onChangeText={setNomeDoador}
@@ -50,11 +64,23 @@ export default function DonationForm({navigation}) {
         style={Style.input}
       />
 
-      <TouchableOpacity onPress={()=>{goHome()}} style={Style.btn}>
+      <TouchableOpacity onPress={adicionarDados} style={Style.btn}>
         <View>
           <Text style={Style.txtBtn}>Enviar</Text>
         </View>
       </TouchableOpacity>
-    </View>
+
+      <View style={Style.listaContainer}>
+        <Text style={Style.txt1}>Dados Armazenados:</Text>
+        {listaDados.map((dados, index) => (
+          <View key={index} style={Style.dadosContainer}>
+            <Text style={Style.dadosText}>Nome do Doador: {dados.nomeDoador}</Text>
+            <Text style={Style.dadosText}>Perecível ou não: {dados.perecivel}</Text>
+            <Text style={Style.dadosText}>Quantidade: {dados.quantidade}</Text>
+            <Text style={Style.dadosText}>Observações: {dados.observacoes}</Text>
+          </View>
+        ))}
+      </View>
+    </ScrollView>
   );
 }

@@ -23,6 +23,10 @@ export default function HomeScreen({navigation}) {
     const goDoacoes = () => {
         navigation.navigate('Doacoes');
     };
+
+    const goSobre = () => {
+        navigation.navigate('SobreNos');
+    };
     return (
         <View style={{ flex: 1 }}>
             <View style={Style.topo}>
