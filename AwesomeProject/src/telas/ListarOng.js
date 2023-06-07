@@ -21,6 +21,7 @@ export default function Register({ navigation }) {
 
   useEffect(() => {
     listar()
+    
   }, []);
 
   const goLogin = () => {
