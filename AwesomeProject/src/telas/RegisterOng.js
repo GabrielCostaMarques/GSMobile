@@ -45,6 +45,9 @@ export default function Register({ navigation }) {
       if (response.data ==200||response.data==201){
         alert("Erro de formulário")
         goHome()}
+        else{
+          alert("Cadastro realizado!")
+        }
       alert(response.status);
     } catch (error) {
       alert(error);
