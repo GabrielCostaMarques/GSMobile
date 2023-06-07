@@ -12,17 +12,9 @@ import {
 import axios from 'axios';
 import Style from '../../estilos/StyleSignIn';
 import Logo from '../../assets/images.png'
-
-const baseUrl = 'http://localhost:8080/api/v1';
+import {API_URL} from './api'
 
 export default function Register({ navigation }) {
-  const api = axios.create({
-    baseURL: baseUrl,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-
   const goLogin = () => {
     navigation.navigate('Login');
   };
@@ -35,7 +27,7 @@ export default function Register({ navigation }) {
 
   const inserir = async () => {
     try {
-      const response = await axios.post(`${baseUrl}/ong/cadastrar`, {
+      const response = await axios.post(`${API_URL}/ong/cadastrar`, {
         nome,
         cpf,
         dtNsc,
