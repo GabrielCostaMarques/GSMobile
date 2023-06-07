@@ -143,6 +143,7 @@ export default function Register({ navigation }) {
 
         <View style={{marginBottom:80}}>
           <TouchableOpacity onPress={()=>{
+            alert("ONG Cadastrada com Sucesso!")
             inserir()
             goHome()
           }}>

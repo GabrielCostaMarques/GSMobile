@@ -9,15 +9,21 @@ import {
   ScrollView,
 } from 'react-native';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import axios from 'axios';
 import Style from '../../estilos/StyleSignIn';
-import Logo from '../../assets/images.png'
+import Logo from '../../assets/logoMain.png'
 import {API_URL} from './api'
 
 export default function Register({ navigation }) {
+  const goHome = () => {
+    navigation.navigate('Home');
+  }
   const goLogin = () => {
     navigation.navigate('Login');
-  };
+  }
+
 
   const [nome, setNome] = useState('');
   const [cpf, setCpf] = useState('');
@@ -40,10 +46,32 @@ export default function Register({ navigation }) {
     }
   };
 
+  const handleRegister = () => {
+    alert("Cadastro Realizado!!!");
+    goLogin();
+
+    AsyncStorage.getItem("USUARIOS")
+      .then((info) => {
+        let lista = [];
+        const obj = { email, senha };
+        if (info) { 
+          lista = JSON.parse(info);
+        }
+        lista.push(obj);
+        AsyncStorage.setItem("USUARIOS", JSON.stringify(lista))
+          .catch((err) => {
+            alert("Erro ao ler a lista de usuários: " + err);
+          });
+      })
+      .catch((err) => {
+        alert("Erro ao ler a lista de usuários: " + err);
+      });
+  };
+
   return (
     <ScrollView>
       <View style={Style.container}>
-          <Image source={Logo} style={Style.logo} />
+        <Image source={Logo} style={Style.logo} />
 
 
         <View style={{ marginBottom: 30 }}>
@@ -96,10 +124,7 @@ export default function Register({ navigation }) {
         </View>
 
         <View>
-          <TouchableOpacity onPress={()=>{
-            alert("CADASTRO REALIZADO")
-            goHome()
-          }}>
+          <TouchableOpacity onPress={handleRegister}>
             <View>
               <Text style={Style.btn}>Cadastrar</Text>
             </View>
