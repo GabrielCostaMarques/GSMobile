@@ -1,18 +1,16 @@
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
 import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
 
 import Style from '../../../estilos/StyleHome';
 import Styles from '../../../estilos/StyleSignIn'
+
 import Icon from '../../../assets/Icon.png';
 import Doacoes from '../../../assets/Icon-doacoes.png';
 import Doar from '../../../assets/Icon-doar.png';
 import SobreNos from '../../../assets/SobreNos.png';
-import RegistroOng from '../RegisterOng'
+import ListOng from '../../../assets/IconListOng.png';
+import RegOng from '../../../assets/IconResgisterONG.png';
 
-
-const Tab = createBottomTabNavigator();
 
 export default function HomeScreen({navigation}) {
 
@@ -26,6 +24,12 @@ export default function HomeScreen({navigation}) {
 
     const goSobre = () => {
         navigation.navigate('SobreNos');
+    };
+    const goListaOng = () => {
+        navigation.navigate('ListarOng');
+    };
+    const goRegisterOng = () => {
+        navigation.navigate('RegisterOng');
     };
     return (
         <View style={{ flex: 1 }}>
@@ -61,8 +65,29 @@ export default function HomeScreen({navigation}) {
                         goSobre();
                     }}
                 >
-                    <Image source={SobreNos} style={Style.iconSobre}></Image>
+                    <Image source={SobreNos} style={Style.iconRegisterOng}></Image>
                     <Text style={Style.txtIcon}>Sobre Nós</Text>
+                </TouchableOpacity>
+                
+                <TouchableOpacity
+                    style={Style.touchRegisterOng}
+                    onPress={() => {
+                        goRegisterOng();
+                    }}
+                >
+                    <Image source={RegOng} style={Style.iconRegisterOng}></Image>
+                    <Text style={Style.txtIcon}>Nova ONG</Text>
+                </TouchableOpacity>
+
+
+                <TouchableOpacity
+                    style={Style.touchListaOng}
+                    onPress={() => {
+                        goListaOng();
+                    }}
+                >
+                    <Image source={ListOng} style={Style.iconListaOng}></Image>
+                    <Text style={Style.txtIcon}>Listar ONGS</Text>
                 </TouchableOpacity>
             </View>
         </View>

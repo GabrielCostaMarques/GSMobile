@@ -14,9 +14,9 @@ import {
 import axios from 'axios';
 import Style from '../../estilos/StyleSignIn';
 import Logo from '../../assets/images.png'
-import { listarTodasOngs} from './api';
+import { listarTodasOngs} from './api/api';
 
-export default function Register({ navigation }) {
+export default function Register() {
   const [valor, setValor] = useState([])
 
   useEffect(() => {
@@ -24,14 +24,15 @@ export default function Register({ navigation }) {
     
   }, []);
 
-  const goLogin = () => {
-    navigation.navigate('Login');
-  };
+  const API_URL = 'http://172.23.144.1:8080/api/v1';
+
+
 
   const listar = async () => {
     try {
-      const response = await listarTodasOngs
+      const response = await axios.get(`${API_URL}/ong/listarTodos`);
       setValor(response.data)
+      console.log(response.data)
     } catch (error) {
       console.log(error);
     }
@@ -56,13 +57,13 @@ export default function Register({ navigation }) {
   }
 
   return (
-    <ScrollView>
+
       <View style={{ flex: 1 }}>
         <FlatList
           data={valor}
           renderItem={({ item }) => <Item dados={item} />}
         />
       </View>
-    </ScrollView>
+
   );
 }

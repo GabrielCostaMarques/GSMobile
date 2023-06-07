@@ -13,7 +13,7 @@ import axios from 'axios';
 import Style from '../../estilos/StyleSignIn';
 import Logo from '../../assets/images.png'
 
-const baseUrl = 'http://localhost:8080/api/v1';
+const baseUrl = 'http://172.23.144.1:8080/api/v1';
 
 export default function Register({ navigation }) {
   const api = axios.create({
@@ -49,17 +49,14 @@ export default function Register({ navigation }) {
   };
 
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={{flex:1}}>
       <View style={Style.container}>
-        <View>
-          <Image source={Logo} style={Style.logo} />
-        </View>
 
         <View style={{ marginBottom: 30 }}>
           <Text style={Style.txt1}>Cadastre sua ONG</Text>
         </View>
 
-        <View>
+        <View style={{flex:1}}>
           <Text style={Style.txt2}>CNPJ</Text>
           <TextInput
             onChangeText={setCnpj}
@@ -101,7 +98,7 @@ export default function Register({ navigation }) {
           />
         </View>
 
-        <View>
+        <View style={{marginBottom:80}}>
           <TouchableOpacity onPress={()=>{
             inserir()
           }}>
