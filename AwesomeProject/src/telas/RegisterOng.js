@@ -27,11 +27,11 @@ export default function Register({ navigation }) {
     navigation.navigate('Login');
   };
 
-  const [cnpj, setCnpj] = useState('456789');
-  const [nome, setNome] = useState('456789');
-  const [endereco, setEndereco] = useState('333');
-  const [email, setEmail] = useState('444');
-  const [telefone, setTelefone] = useState('555');
+  const [cnpj, setCnpj] = useState('');
+  const [nome, setNome] = useState('');
+  const [endereco, setEndereco] = useState('');
+  const [email, setEmail] = useState('');
+  const [telefone, setTelefone] = useState('');
 
   const inserir = async () => {
     try {

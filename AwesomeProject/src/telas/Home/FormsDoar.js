@@ -1,86 +1,78 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 
 import Style from '../../../estilos/StyleDoar'
+import { cadastrarDoador } from '../api/api';
+import axios from 'axios';
 
 export default function DonationForm({ navigation }) {
-  const [nomeDoador, setNomeDoador] = useState('');
-  const [perecivel, setPerecivel] = useState('');
-  const [quantidade, setQuantidade] = useState('');
-  const [observacoes, setObservacoes] = useState('');
-  const [listaDados, setListaDados] = useState([]);
+  const [nome, setNome] = useState('');
+  const [tipo, setTipo] = useState('');
+  const [documento, setDocumento] = useState('');
+  const [email, setEmail] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [doacoes, setDoacoes] = useState([]);
+  
+  const API_URL = 'http://172.23.144.1:8080/api/v1';
 
-  const goHome = () => {
-    navigation.navigate('Home')
-  }
-
-  const adicionarDados = () => {
-    const dados = {
-      nomeDoador,
-      perecivel,
-      quantidade,
-      observacoes
-    };
-    setListaDados([...listaDados, dados]);
-    setNomeDoador('');
-    setPerecivel('');
-    setQuantidade('');
-    setObservacoes('');
-  }
+  
+  const inserir = async () => {
+    try {
+      const response = await axios.post(`${API_URL}/doador`,{nome,tipo,documento,email,telefone});
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <ScrollView contentContainerStyle={Style.container}>
       <Text style={Style.txt1}>Nome do Doador</Text>
       <TextInput
-        onChangeText={setNomeDoador}
-        value={nomeDoador}
-        placeholder="Digite o nome do doador"
+        onChangeText={setNome}
+        value={nome}
+        placeholder="Digite aqui"
         style={Style.input}
       />
 
-      <Text style={Style.txt1}>Perecível ou não?</Text>
+      <Text style={Style.txt1}>Tipo</Text>
       <TextInput
-        onChangeText={setPerecivel}
-        value={perecivel}
-        placeholder="Digite se é perecível ou não"
+        onChangeText={setTipo}
+        value={tipo}
+        placeholder="Digite aqui"
         style={Style.input}
       />
 
-      <Text style={Style.txt1}>Quantos kg de comida</Text>
+      <Text style={Style.txt1}>Documento</Text>
       <TextInput
-        onChangeText={setQuantidade}
-        value={quantidade}
-        placeholder="Digite a quantidade de comida em kg"
-        keyboardType="numeric"
+        onChangeText={setDocumento}
+        value={documento}
+        placeholder="Digite aqui"
         style={Style.input}
       />
 
-      <Text style={Style.txt1}>Observações</Text>
+      <Text style={Style.txt1}>Email</Text>
       <TextInput
-        onChangeText={setObservacoes}
-        value={observacoes}
-        placeholder="Digite observações adicionais"
+        onChangeText={setEmail}
+        value={email}
+        placeholder="Digite aqui"
         multiline={true}
         style={Style.input}
       />
+      <Text style={Style.txt1}>Telefone</Text>
+      <TextInput
+        onChangeText={setTelefone}
+        value={telefone}
+        placeholder="Digite aqui"
+        style={Style.input}
+      />
 
-      <TouchableOpacity onPress={adicionarDados} style={Style.btn}>
+      <TouchableOpacity onPress={inserir}
+       style={Style.btn}>
         <View>
           <Text style={Style.txtBtn}>Enviar</Text>
         </View>
       </TouchableOpacity>
-
-      <View style={Style.listaContainer}>
-        <Text style={Style.txt1}>Dados Armazenados:</Text>
-        {listaDados.map((dados, index) => (
-          <View key={index} style={Style.dadosContainer}>
-            <Text style={Style.dadosText}>Nome do Doador: {dados.nomeDoador}</Text>
-            <Text style={Style.dadosText}>Perecível ou não: {dados.perecivel}</Text>
-            <Text style={Style.dadosText}>Quantidade: {dados.quantidade}</Text>
-            <Text style={Style.dadosText}>Observações: {dados.observacoes}</Text>
-          </View>
-        ))}
-      </View>
     </ScrollView>
   );
 }
