@@ -25,19 +25,8 @@ export default function Register({ navigation }) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
-  const inserir = async () => {
-    try {
-      const response = await axios.post(`${API_URL}/ong/cadastrar`, {
-        nome,
-        cpf,
-        dtNsc,
-        email,
-        senha,
-      });
-      alert(response.status);
-    } catch (error) {
-      alert(error);
-    }
+  const goHome = () => {
+    navigation.navigate('Home');
   };
 
   return (
