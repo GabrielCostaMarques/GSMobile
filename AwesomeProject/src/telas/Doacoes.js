@@ -4,7 +4,7 @@ import axios from 'react-native-axios';
 import styles from '../../estilos/StyleDoacoes'
 
 export default function Doacoes() {
-  const API_URL = 'http://192.168.0.4:8080/api/v1';
+  const API_URL = 'http://172.23.144.1:8080/api/v1';
   const [dados, setDados] = useState([])
 
   useEffect(() => {
