@@ -29,3 +29,5 @@ export const cadastrarDoacao = (data) => api.post('/doacoes', data);
 export const atualizarDoacao = (id, data) => api.put(`/doacoes/${id}`, data);
 export const buscarDoacaoPorId = (id) => api.get(`/doacoes/${id}`);
 export const removerDoacao = (id) => api.delete(`/doacoes/${id}`);
+
+export default api

@@ -6,7 +6,7 @@ export default StyleSheet.create({
     topo:{
        flex:3,
        backgroundColor:'#7ED956',
-       borderBottomLeftRadius:100
+       borderBottomLeftRadius:110
     },
 
     menu:{
@@ -40,8 +40,8 @@ export default StyleSheet.create({
 
     txt1:{
         position:"absolute",
-        top:130,
-        left:130,
+        top:110,
+        left:110,
         fontWeight:"bold",
     },
 
@@ -72,8 +72,8 @@ export default StyleSheet.create({
     },
 
     iconSobre:{
-        width:130,
-        height:130,
+        width:110,
+        height:110,
         backgroundColor:"#7ED956",
         borderRadius:30,
     },
@@ -84,11 +84,38 @@ export default StyleSheet.create({
         top:"50%",
     },
 
+    iconRegisterOng:{
+        width:110,
+        height:110,
+        backgroundColor:"#7ED956",
+        borderRadius:30,
+    },
+
+    touchRegisterOng:{
+        position:'absolute',
+        left:"5%",
+        top:"50%",
+    },
+    iconListaOng:{
+        width:110,
+        height:110,
+        backgroundColor:"#7ED956",
+        borderRadius:30,
+    },
+
+    touchListaOng:{
+        position:'absolute',
+        left:"65%",
+        top:"50%",
+    },
+
     txtIcon:{
         textAlign:"center",
         fontWeight:"700",
         marginTop:10,
         fontSize:20
     }
+
+
 
 })
