@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 //atualizar com o seu ip
-const API_URL = 'http://192.168.0.4:8080/api/v1';
+export const API_URL = 'http://192.168.0.4:8080/api/v1';
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
@@ -17,7 +17,7 @@ export const atualizarOng = (id, data) => api.put(`/ong/${id}`, data);
 export const removerOng = (id) => api.delete(`/ong/${id}`);
 
 // Doador Endpoints
-export const listarTodosDoadores = () => api.get('/doador');
+export const listarTodosDoadores = () => api.get('/doador/listar');
 export const cadastrarDoador = (data) => api.post('/doador', data);
 export const atualizarDoador = (id, data) => api.put(`/doador/${id}`, data);
 export const buscarDoadorPorId = (id) => api.get(`/doador/${id}`);

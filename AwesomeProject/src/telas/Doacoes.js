@@ -1,44 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Button, SafeAreaView } from 'react-native';
 import axios from 'react-native-axios';
-
 import styles from '../../estilos/StyleDoacoes'
 
 export default function Doacoes() {
-  const [teste, setTeste] = useState([]);
+  const API_URL = 'http://192.168.0.4:8080/api/v1';
+  const [dados, setDados] = useState([])
 
-  const baseUrl = 'http://localhost:8080/api/v1';
-
-  const api = axios.create({
-    baseURL: baseUrl,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-
-  const data = [
-    {   "nome":"string",
-        "tipo": "PF",
-        "documento": "88.073.524/7950-41",
-        "email": "string",
-        "telefone": "string" }]
-
-
-  const inserir = async () => {
+  useEffect(() => {
+    listar()
+  }, []);
+    
+  const listar = async () => {
     try {
-      const response = await axios.get('https://swapi.dev/api/people/1/');
-      
-      setTeste([response.data]);
+      const response = await axios.get(`${API_URL}/doador/listar`);
+      setDados(response.data);
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   };
 
-  const Item = (dados)  =>  {
-
-    console.log(dados)
+  const Item = (dados) => {
     return (
-
       <View style={styles.table}>
         <View style={styles.row}>
           <Text style={styles.header}>Nome</Text>
@@ -61,19 +44,15 @@ export default function Doacoes() {
           <Text>{dados.dados.tipo}</Text>
         </View>
       </View>
-
-
     );
   };
 
   return (
     <SafeAreaView>
       <FlatList
-        data={data}
-        renderItem={({item}) => <Item dados={item} />}
+        data={dados}
+        renderItem={({ item }) => <Item dados={item} />}
       />
-
-      <Button title="Listar" onPress={inserir} />
     </SafeAreaView>
   );
 }
