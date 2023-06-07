@@ -14,34 +14,25 @@ import {
 import axios from 'axios';
 import Style from '../../estilos/StyleSignIn';
 import Logo from '../../assets/images.png'
-
-const baseUrl = 'http://192.168.0.4:8080/api/v1';
+import { listarTodasOngs} from './api';
 
 export default function Register({ navigation }) {
-  const api = axios.create({
-    baseURL: baseUrl,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  const [valor, setValor] = useState([])
 
   useEffect(() => {
     listar()
   }, []);
 
-
   const goLogin = () => {
     navigation.navigate('Login');
   };
 
-  const [valor, setValor] = useState([])
-
   const listar = async () => {
     try {
-      const response = await axios.get(`${baseUrl}/ong/listarTodos`)
+      const response = await listarTodasOngs
       setValor(response.data)
     } catch (error) {
-      console.log("foobar", error);
+      console.log(error);
     }
   };
 
