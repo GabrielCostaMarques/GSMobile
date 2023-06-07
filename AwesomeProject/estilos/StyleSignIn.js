@@ -14,8 +14,9 @@ export default StyleSheet.create({
     
     logo:{
         width: "100%",
-        height: 1255/2925*width, 
+        height: 500/1024*width, 
         zIndex:99,
+        borderRadius:40
     },
 
     txt1:{
@@ -41,11 +42,20 @@ export default StyleSheet.create({
     },
 
     btn:{
-        marginTop:50,
+        position:'relative',
         paddingHorizontal:50,
         paddingVertical:20,
         borderRadius:20,
         backgroundColor: '#235b09'
+    },
+
+    btnRegOn:{
+        position:'relative',
+        paddingHorizontal:50,
+        paddingVertical:20,
+        borderRadius:20,
+        marginTop:130,
+        backgroundColor: '#235b09' 
     }
 
    

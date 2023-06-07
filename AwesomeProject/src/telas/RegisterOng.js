@@ -13,8 +13,8 @@ import {API_URL} from './api'
 
 export default function Register({ navigation }) {
 
-  const goLogin = () => {
-    navigation.navigate('Login');
+  const goHome = () => {
+    navigation.navigate('Home');
   };
 
   const [cnpj, setCnpj] = useState('');
@@ -144,9 +144,10 @@ export default function Register({ navigation }) {
         <View style={{marginBottom:80}}>
           <TouchableOpacity onPress={()=>{
             inserir()
+            goHome()
           }}>
             <View>
-              <Text style={Style.btn}>Cadastrar</Text>
+              <Text style={Style.btnRegOn}>Cadastrar</Text>
             </View>
           </TouchableOpacity>
         </View>

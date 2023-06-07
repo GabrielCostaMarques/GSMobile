@@ -40,8 +40,8 @@ export default StyleSheet.create({
 
     txt1:{
         position:"absolute",
-        top:110,
-        left:110,
+        top:160,
+        left:160,
         fontWeight:"bold",
     },
 

@@ -34,7 +34,7 @@ export default function HomeScreen({navigation}) {
     return (
         <View style={{ flex: 1 }}>
             <View style={Style.topo}>
-                <Text style={Style.titulo}>Olá Usuário</Text>
+                <Text style={Style.titulo}>Olá Usuário!</Text>
                 <Text style={Style.txt1}>São Paulo - SP</Text>
                 <Image source={Icon} style={Style.img} />
             </View>
