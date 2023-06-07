@@ -15,6 +15,9 @@ export default function Doacoes() {
     try {
       const response = await axios.get(`${API_URL}/doador/listar`);
       setDados(response.data);
+      if (response.data ==200||response.data==201){
+        alert("Erro de formulário")
+        goHome()}
     } catch (error) {
       console.log(error);
     }

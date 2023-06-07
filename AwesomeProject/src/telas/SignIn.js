@@ -9,7 +9,7 @@ import {
 } from "react-native";
 
 import Style from '../../estilos/StyleSignIn'
-import Logo from '../../assets/images.png'
+import Logo from '../../assets/logoMain.png'
 
 
 
@@ -20,6 +20,8 @@ export default function SignIn({navigation}){
   
   return( 
     <View style={Style.container}>
+      <Image source={Logo} style={Style.logo}/>
+
       <View style={{marginBottom:30}}>
           <Text style={Style.txt1}>Login</Text>
           <Text>Faça o login para continuar</Text>
@@ -36,7 +38,6 @@ export default function SignIn({navigation}){
         <View>
           <TouchableOpacity
             onPress={() => {
-              alert("cadastro feito")
               goHome()
             }}
           >

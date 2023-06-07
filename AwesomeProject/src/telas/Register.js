@@ -11,7 +11,7 @@ import {
 
 import axios from 'axios';
 import Style from '../../estilos/StyleSignIn';
-import Logo from '../../assets/images.png'
+import Logo from '../../assets/logoMain.png'
 
 const baseUrl = 'http://localhost:8080/api/v1';
 
@@ -23,15 +23,20 @@ export default function Register({ navigation }) {
     },
   });
 
+
+
+  const goHome = () => {
+    navigation.navigate('Home');
+  };
   const goLogin = () => {
     navigation.navigate('Login');
   };
 
-  const [nome, setNome] = useState('aaa');
-  const [cpf, setCpf] = useState('222');
-  const [dtNsc, setDtNsc] = useState('333');
-  const [email, setEmail] = useState('444');
-  const [senha, setSenha] = useState('555');
+  const [nome, setNome] = useState('');
+  const [cpf, setCpf] = useState('');
+  const [dtNsc, setDtNsc] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
 
   const inserir = async () => {
     try {
@@ -106,7 +111,7 @@ export default function Register({ navigation }) {
         <View>
           <TouchableOpacity onPress={()=>{
             alert("CADASTRO REALIZADO")
-            goLogin()
+            goHome()
           }}>
             <View>
               <Text style={Style.btn}>Cadastrar</Text>

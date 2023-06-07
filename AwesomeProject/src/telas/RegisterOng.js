@@ -23,8 +23,8 @@ export default function Register({ navigation }) {
     },
   });
 
-  const goLogin = () => {
-    navigation.navigate('Login');
+  const goHome = () => {
+    navigation.navigate('Home');
   };
 
   const [cnpj, setCnpj] = useState('');
@@ -42,6 +42,9 @@ export default function Register({ navigation }) {
         telefone,
         email,
       });
+      if (response.data ==200||response.data==201){
+        alert("Erro de formulário")
+        goHome()}
       alert(response.status);
     } catch (error) {
       alert(error);
@@ -49,7 +52,7 @@ export default function Register({ navigation }) {
   };
 
   return (
-    <ScrollView contentContainerStyle={{flex:1}}>
+    <ScrollView>
       <View style={Style.container}>
 
         <View style={{ marginBottom: 30 }}>
@@ -101,9 +104,10 @@ export default function Register({ navigation }) {
         <View style={{marginBottom:80}}>
           <TouchableOpacity onPress={()=>{
             inserir()
+            goHome()
           }}>
             <View>
-              <Text style={Style.btn}>Cadastrar</Text>
+              <Text style={Style.btnRegOn}>Cadastrar</Text>
             </View>
           </TouchableOpacity>
         </View>

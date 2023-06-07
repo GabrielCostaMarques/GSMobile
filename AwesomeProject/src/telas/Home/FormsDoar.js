@@ -14,12 +14,19 @@ export default function DonationForm({ navigation }) {
   const [doacoes, setDoacoes] = useState([]);
   
   const API_URL = 'http://172.23.144.1:8080/api/v1';
-
+  const goHome = () => {
+    navigation.navigate('Home');
+  };
   
   const inserir = async () => {
     try {
       const response = await axios.post(`${API_URL}/doador`,{nome,tipo,documento,email,telefone});
-      console.log(response);
+        if (response.data ==200||response.data==201||response.data==400){
+          alert("Erro de formulário")
+          goHome()}
+          else{
+            alert("Doação Realizada!")
+          }
     } catch (error) {
       console.log(error);
     }
@@ -67,7 +74,10 @@ export default function DonationForm({ navigation }) {
         style={Style.input}
       />
 
-      <TouchableOpacity onPress={inserir}
+      <TouchableOpacity onPress={()=>{
+        (inserir)
+        goHome()
+      }}
        style={Style.btn}>
         <View>
           <Text style={Style.txtBtn}>Enviar</Text>
