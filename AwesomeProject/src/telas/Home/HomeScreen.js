@@ -11,9 +11,18 @@ import Doar from '../../../assets/Icon-doar.png';
 import SobreNos from '../../../assets/SobreNos.png';
 import RegistroOng from '../RegisterOng'
 
+
 const Tab = createBottomTabNavigator();
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
+
+    const goDoar = () => {
+        navigation.navigate('Doar');
+    };
+
+    const goDoacoes = () => {
+        navigation.navigate('Doacoes');
+    };
     return (
         <View style={{ flex: 1 }}>
             <View style={Style.topo}>
@@ -25,7 +34,9 @@ export default function HomeScreen() {
             <View style={Style.menu}>
                 <Text style={Style.titulo1}>ATIVIDADES</Text>
 
-                <TouchableOpacity style={Style.touchDoacoes}>
+                <TouchableOpacity style={Style.touchDoacoes} onPress={()=>{
+                    goDoacoes()
+                }}>
                     <Image source={Doacoes} style={Style.iconDoacoes}></Image>
                     <Text style={Style.txtIcon}>Doações</Text>
                 </TouchableOpacity>

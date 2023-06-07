@@ -41,7 +41,6 @@ export default function Register({ navigation }) {
     <ScrollView>
       <View style={Style.container}>
           <FlatList 
-          data={}
           />
       </View>
     </ScrollView>
