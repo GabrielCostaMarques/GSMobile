@@ -30,47 +30,14 @@ export default function Home({ navigation }) {
                 <Tab.Screen
                     name="Tela Inicial"
                     component={HomeScreen}
-                    options={{
-                        tabBarIcon: ({ focused }) => (
-                            <Image
-                                source={Icon}
-                                style={[
-                                    Style.img,
-                                    { tintColor: focused ? 'blue' : 'gray' },
-                                ]}
-                            />
-                        ),
-                    }}
                 />
                 <Tab.Screen
                     name="Cadastrar"
                     component={RegistroOng}
-                    options={{
-                        tabBarIcon: ({ focused }) => (
-                            <Image
-                                source={Icon}
-                                style={[
-                                    Style.img,
-                                    { tintColor: focused ? 'blue' : 'gray' },
-                                ]}
-                            />
-                        ),
-                    }}
                 />
                 <Tab.Screen
                     name="Listar"
                     component={ListarOng}
-                    options={{
-                        tabBarIcon: ({ focused }) => (
-                            <Image
-                                source={Icon}
-                                style={[
-                                    Style.img,
-                                    { tintColor: focused ? 'blue' : 'gray' },
-                                ]}
-                            />
-                        ),
-                    }}
                 />
             </Tab.Navigator>
         </NavigationContainer>
