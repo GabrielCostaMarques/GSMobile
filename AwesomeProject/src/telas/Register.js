@@ -27,7 +27,6 @@ export default function Register({ navigation }) {
     navigation.navigate('Login');
   };
 
-  const [teste, setTeste] = useState([]);
   const [nome, setNome] = useState('aaa');
   const [cpf, setCpf] = useState('222');
   const [dtNsc, setDtNsc] = useState('333');
@@ -106,7 +105,6 @@ export default function Register({ navigation }) {
 
         <View>
           <TouchableOpacity onPress={()=>{
-            inserir()
             alert("CADASTRO REALIZADO")
             goLogin()
           }}>
