@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Button, SafeAreaView } from 'react-native';
 import axios from 'react-native-axios';
 import styles from '../../estilos/StyleDoacoes'
-
+import {API_URL} from './api'
 export default function Doacoes() {
-  const API_URL = 'http://172.23.144.1:8080/api/v1';
   const [dados, setDados] = useState([])
 
   useEffect(() => {
@@ -14,6 +13,9 @@ export default function Doacoes() {
   const listar = async () => {
     try {
       const response = await axios.get(`${API_URL}/doador/listar`);
+      if (response.data.length < 1) {
+        alert("Sem dados Cadastrados")
+      }
       setDados(response.data);
     } catch (error) {
       console.log(error);

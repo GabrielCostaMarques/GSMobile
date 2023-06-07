@@ -4,24 +4,14 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  Image,
-  StatusBar,
   ScrollView,
 } from 'react-native';
 
 import axios from 'axios';
 import Style from '../../estilos/StyleSignIn';
-import Logo from '../../assets/images.png'
-
-const baseUrl = 'http://172.23.144.1:8080/api/v1';
+import {API_URL} from './api'
 
 export default function Register({ navigation }) {
-  const api = axios.create({
-    baseURL: baseUrl,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
 
   const goLogin = () => {
     navigation.navigate('Login');
@@ -29,27 +19,45 @@ export default function Register({ navigation }) {
 
   const [cnpj, setCnpj] = useState('');
   const [nome, setNome] = useState('');
-  const [endereco, setEndereco] = useState('');
   const [email, setEmail] = useState('');
   const [telefone, setTelefone] = useState('');
+  
+  
+  const [logradouro, setLogradouro] = useState('');
+  const [numero, setNumero] = useState('');
+  const [complemento, setComplemento] = useState('');
+  const [cep, setCep] = useState('');
+  const [uf, setUf] = useState('');
+  const [cidade, setCidade] = useState('');
 
   const inserir = async () => {
     try {
-      const response = await axios.post(`${baseUrl}/ong/cadastrar`, {
+      
+      let endereco = {
+        "logradouro": logradouro,
+        "numero": numero,
+        "complemento": complemento,
+        "cep": cep,
+        "uf": uf,
+        "cidade": cidade
+      }
+
+      const response = await axios.post(`${API_URL}/ong/cadastrar`, {
         cnpj,
         nome,
-        endereco,
+        endereco:endereco,
         telefone,
         email,
       });
-      alert(response.status);
+      
+      
     } catch (error) {
       alert(error);
     }
   };
 
   return (
-    <ScrollView contentContainerStyle={{flex:1}}>
+    <ScrollView >
       <View style={Style.container}>
 
         <View style={{ marginBottom: 30 }}>
@@ -73,11 +81,46 @@ export default function Register({ navigation }) {
             style={Style.input}
           />
 
-          <Text style={Style.txt2}>ENDEREÇO</Text>
+          <Text style={Style.txt2}>LOGRADOURO</Text>
           <TextInput
-            onChangeText={setEndereco}
-            value={endereco}
-            placeholder="Digite o endereço"
+            onChangeText={setLogradouro}
+            value={logradouro}
+            placeholder="Digite o logradouro"
+            style={Style.input}
+          />
+          <Text style={Style.txt2}>NUMERO</Text>
+          <TextInput
+            onChangeText={setNumero}
+            value={numero}
+            placeholder="Digite o numero"
+            style={Style.input}
+          />
+          <Text style={Style.txt2}>COMPLEMENTO</Text>
+          <TextInput
+            onChangeText={setComplemento}
+            value={complemento}
+            placeholder="Digite o complemento"
+            style={Style.input}
+          />
+          <Text style={Style.txt2}>CEP</Text>
+          <TextInput
+            onChangeText={setCep}
+            value={cep}
+            placeholder="Digite o cep"
+            style={Style.input}
+          />
+           <Text style={Style.txt2}>UF</Text>
+          <TextInput
+            onChangeText={setUf}
+            value={uf}
+            placeholder="Digite o uf"
+            style={Style.input}
+          />
+          <Text style={Style.txt2}>CIDADE</Text>
+          <TextInput
+            onChangeText={setCidade}
+            value={cidade}
+            placeholder="Digite a cidade"
             style={Style.input}
           />
 

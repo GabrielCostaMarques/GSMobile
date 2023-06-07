@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 
 import Style from '../../../estilos/StyleDoar'
-import { cadastrarDoador } from '../api/api';
 import axios from 'axios';
+import {API_URL} from '../api'
 
 export default function DonationForm({ navigation }) {
   const [nome, setNome] = useState('');
@@ -11,11 +11,8 @@ export default function DonationForm({ navigation }) {
   const [documento, setDocumento] = useState('');
   const [email, setEmail] = useState('');
   const [telefone, setTelefone] = useState('');
-  const [doacoes, setDoacoes] = useState([]);
   
-  const API_URL = 'http://172.23.144.1:8080/api/v1';
-
-  
+   
   const inserir = async () => {
     try {
       const response = await axios.post(`${API_URL}/doador`,{nome,tipo,documento,email,telefone});

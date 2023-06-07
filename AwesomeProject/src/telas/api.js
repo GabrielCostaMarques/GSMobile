@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-//atualizar com o seu ip
-export const API_URL = 'http://192.168.15.158:8080/api/v1';
+// Atualize com o seu IP
+export const API_URL = 'http://192.168.0.4:8080/api/v1';
 
-export const api = axios.create({
+const api = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
@@ -30,4 +30,4 @@ export const atualizarDoacao = (id, data) => api.put(`/doacoes/${id}`, data);
 export const buscarDoacaoPorId = (id) => api.get(`/doacoes/${id}`);
 export const removerDoacao = (id) => api.delete(`/doacoes/${id}`);
 
-export default api
+export default api;
