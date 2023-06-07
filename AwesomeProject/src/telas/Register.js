@@ -52,9 +52,8 @@ export default function Register({ navigation }) {
   return (
     <ScrollView>
       <View style={Style.container}>
-        <View>
           <Image source={Logo} style={Style.logo} />
-        </View>
+
 
         <View style={{ marginBottom: 30 }}>
           <Text style={Style.txt1}>Cadastre-se</Text>

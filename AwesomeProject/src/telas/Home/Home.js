@@ -11,6 +11,10 @@ import SobreNos from '../../../assets/SobreNos.png'
 
 export default function Home({navigation}){
 
+    const goDoacoes =()=>{
+        navigation.navigate('Doacoes')
+    }
+
     const goDoar = () => {
         navigation.navigate('Doar');
       };
@@ -24,13 +28,15 @@ export default function Home({navigation}){
             <View style={Style.topo}>
                 <Text style={Style.titulo}>Olá Usuário</Text>
                 <Text style={Style.txt1}>São Paulo - SP</Text>
-                <Image source={Icon} style={Style.img}/>
+                    <Image source={Icon} style={Style.img}/>
             </View>
 
             <View style={Style.menu}>
                 <Text style={Style.titulo1}>ATIVIDADES</Text>
 
-            <TouchableOpacity style={Style.touchDoacoes}>
+            <TouchableOpacity style={Style.touchDoacoes} onPress={()=>{
+                goDoacoes()
+            }}>
                 <Image source={Doacoes} style={Style.iconDoacoes}></Image>
                 <Text style={Style.txtIcon}>Doações</Text>
             </TouchableOpacity>
