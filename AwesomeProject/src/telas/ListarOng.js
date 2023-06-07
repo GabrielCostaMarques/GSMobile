@@ -45,22 +45,24 @@ export default function Register({ navigation }) {
   const Item = (props) => {
     console.log(props)
     return(
-      <View>
-        <Text>{props.dados.cnpj}</Text>
-        <Text>{props.dados.nome}</Text>
-        <Text>{props.dados.endereco}</Text>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#7ed956', borderWidth: 2, borderColor: '#FFF', borderRadius: 20}}>
+        <Text style={{fontWeight: 'bold'}}>CNPJ: {props.dados.cnpj}</Text>
+        <Text style={{fontWeight: 'bold'}}>NOME: {props.dados.nome}</Text>
+        <Text style={{fontWeight: 'bold'}}>ENDEREÇO: {props.dados.endereco}</Text>
+        <Text style={{fontWeight: 'bold'}}>TELEFONE: {props.dados.telefone}</Text>
+        <Text style={{fontWeight: 'bold'}}>E-MAIL: {props.dados.email}</Text>
       </View>
     )
   }
 
   return (
     <ScrollView>
-      <View style={Style.container}>
+      <View style={{flex: 1}}>
+      <Button title='listar' onPress={(listar)} />
           <FlatList 
           data={valor}
           renderItem={({item}) => <Item dados={item} />}
           />
-        <Button title='listar' onPress={(listar)} />
       </View>
     </ScrollView>
   );
