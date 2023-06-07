@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Text,
   View,
@@ -14,16 +14,14 @@ import {
 import axios from 'axios';
 import Style from '../../estilos/StyleSignIn';
 import Logo from '../../assets/images.png'
-
-const baseUrl = 'http://localhost:8080/api/v1';
+import { listarTodasOngs} from './api';
 
 export default function Register({ navigation }) {
-  const api = axios.create({
-    baseURL: baseUrl,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  const [valor, setValor] = useState([])
+
+  useEffect(() => {
+    listar()
+  }, []);
 
   const goLogin = () => {
     navigation.navigate('Login');
@@ -31,38 +29,38 @@ export default function Register({ navigation }) {
 
   const listar = async () => {
     try {
-      const response = await axios.get(`${baseUrl}/ong/listar`)
-      alert(response.status);
+      const response = await listarTodasOngs
       setValor(response.data)
-      console.log(response.data)
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   };
 
-  const [valor, setValor] = useState([])
-
   const Item = (props) => {
-    console.log(props)
-    return(
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#7ed956', borderWidth: 2, borderColor: '#FFF', borderRadius: 20}}>
-        <Text style={{fontWeight: 'bold'}}>CNPJ: {props.dados.cnpj}</Text>
-        <Text style={{fontWeight: 'bold'}}>NOME: {props.dados.nome}</Text>
-        <Text style={{fontWeight: 'bold'}}>ENDEREÇO: {props.dados.endereco}</Text>
-        <Text style={{fontWeight: 'bold'}}>TELEFONE: {props.dados.telefone}</Text>
-        <Text style={{fontWeight: 'bold'}}>E-MAIL: {props.dados.email}</Text>
+    let endereco = props.dados.endereco
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#7ed956', borderWidth: 2, borderColor: '#FFF', borderRadius: 20 }}>
+        <Text style={{ fontWeight: 'bold' }}>CNPJ: {props.dados.cnpj}</Text>
+        <Text style={{ fontWeight: 'bold' }}>NOME: {props.dados.nome}</Text>
+        <Text style={{ fontWeight: 'bold' }}>LOGRADOURO: {endereco.logradouro}</Text>
+        <Text style={{ fontWeight: 'bold' }}>NUMERO: {endereco.numero}</Text>
+        <Text style={{ fontWeight: 'bold' }}>COMPLEMENTO: {endereco.complemento}</Text>
+        <Text style={{ fontWeight: 'bold' }}>CEP: {endereco.cep}</Text>
+        <Text style={{ fontWeight: 'bold' }}>UF: {endereco.uf}</Text>
+        <Text style={{ fontWeight: 'bold' }}>CIDADE: {endereco.cidade}</Text>
+        <Text style={{ fontWeight: 'bold' }}>TELEFONE: {props.dados.telefone}</Text>
+        <Text style={{ fontWeight: 'bold' }}>E-MAIL: {props.dados.email}</Text>
       </View>
     )
   }
 
   return (
     <ScrollView>
-      <View style={{flex: 1}}>
-      <Button title='listar' onPress={(listar)} />
-          <FlatList 
+      <View style={{ flex: 1 }}>
+        <FlatList
           data={valor}
-          renderItem={({item}) => <Item dados={item} />}
-          />
+          renderItem={({ item }) => <Item dados={item} />}
+        />
       </View>
     </ScrollView>
   );

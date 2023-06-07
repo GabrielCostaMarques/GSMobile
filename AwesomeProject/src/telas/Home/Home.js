@@ -15,15 +15,7 @@ import HomeScreen from '../Home/HomeScreen'
 
 const Tab = createBottomTabNavigator();
 
-export default function Home({ navigation }) {
-    const goDoar = () => {
-        navigation.navigate('Doar');
-    };
-
-    const goSobre = () => {
-        navigation.navigate('SobreNos');
-    };
-
+export default function Home() {
     return (
         <NavigationContainer independent="true">
             <Tab.Navigator>
