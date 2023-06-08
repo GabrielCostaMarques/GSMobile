@@ -17,9 +17,7 @@ import Logo from '../../assets/logoMain.png'
 import {API_URL} from './api'
 
 export default function Register({ navigation }) {
-  const goHome = () => {
-    navigation.navigate('Home');
-  }
+
   const goLogin = () => {
     navigation.navigate('Login');
   }
@@ -31,9 +29,6 @@ export default function Register({ navigation }) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
-  const goHome = () => {
-    navigation.navigate('Home');
-  };
 
   const handleRegister = () => {
     alert("Cadastro Realizado!!!");

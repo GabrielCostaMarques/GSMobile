@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Atualize com o seu IP
-export const API_URL = 'http://192.168.0.4:8080/api/v1';
+export const API_URL = 'http://172.23.144.1:8080/api/v1';
 
 const api = axios.create({
   baseURL: API_URL,
