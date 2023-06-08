@@ -15,7 +15,7 @@ export default StyleSheet.create({
     },
 
     input:{
-      marginTop:-90,  
+      marginTop:-30,  
       borderBottomWidth:1 ,
       
       paddingVertical:10,

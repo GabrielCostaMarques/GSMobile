@@ -8,16 +8,16 @@ import {API_URL} from '../api'
 export default function DonationForm({ navigation }) {
   const [nome, setNome] = useState('');
   const [tipo, setTipo] = useState('');
-  const [documento, setDocumento] = useState('');
-  const [email, setEmail] = useState('');
-  const [telefone, setTelefone] = useState('');
+  const [quantidade, setQuantidade] = useState('');
+  const [unidadeMedida, setUnidadeMedida] = useState('');
+  const [dataValidade, setdataValidade] = useState('');
 
  
    
   const inserir = async () => {
     try {
 
-      await axios.post(`${API_URL}/doador`,{nome,tipo,documento,email,telefone});
+      await axios.post(`${API_URL}/alimentos`,{nome,tipo,quantidade,unidadeMedida,dataValidade});
       alert("Cadastro Realizado")
       
     } catch (error) {
@@ -43,26 +43,26 @@ export default function DonationForm({ navigation }) {
         style={Style.input}
       />
 
-      <Text style={Style.txt1}>Documento</Text>
+      <Text style={Style.txt1}>Quantidade</Text>
       <TextInput
-        onChangeText={setDocumento}
-        value={documento}
+        onChangeText={setQuantidade}
+        value={quantidade}
         placeholder="Digite aqui"
         style={Style.input}
       />
 
-      <Text style={Style.txt1}>Email</Text>
+      <Text style={Style.txt1}>Unidade de Medida</Text>
       <TextInput
-        onChangeText={setEmail}
-        value={email}
+        onChangeText={setUnidadeMedida}
+        value={unidadeMedida}
         placeholder="Digite aqui"
         multiline={true}
         style={Style.input}
       />
-      <Text style={Style.txt1}>Telefone</Text>
+      <Text style={Style.txt1}>Data de Validade</Text>
       <TextInput
-        onChangeText={setTelefone}
-        value={telefone}
+        onChangeText={setdataValidade}
+        value={dataValidade}
         placeholder="Digite aqui"
         style={Style.input}
       />
