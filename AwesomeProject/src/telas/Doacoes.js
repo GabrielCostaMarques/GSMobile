@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Button, SafeAreaView, TouchableOpacity, TextInput } from 'react-native';
 import axios from 'react-native-axios';
 import styles from '../../estilos/StyleDoacoes';
-import { removerDoador, atualizarDoador } from './api';
+import { removerDoador, atualizarDoador,removerDoacao } from './api';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import {API_URL} from './api'
 
@@ -16,8 +16,7 @@ export default function Doacoes() {
   const listar = async () => {
     try {
       const response = await axios.get(`${API_URL}/alimentos`);
-      console.log(response.data.content)
-      const dadosFiltrados = response.data.content.filter((item) => item.ativo);
+      const dadosFiltrados = response.data.content;
       setDados(dadosFiltrados);
     } catch (error) {
       console.log(error);
@@ -26,16 +25,14 @@ export default function Doacoes() {
 
   const handleRemoverDoacao = async (id) => {
     try {
-      await removerDoacao(id);
+      await axios.delete(`${API_URL}/alimentos/${id}`);
       listar();
     } catch (error) {
       console.log(error);
     }
   };
 
-  const Item = ({ dados }) => {
-    console.log(dados)
-    console.log(nome,"batata")
+  const Item = ( {dados} ) => {
     return (
       <View style={styles.table}>
         <View style={styles.row}>
